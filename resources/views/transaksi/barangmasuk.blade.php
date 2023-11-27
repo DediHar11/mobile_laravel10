@@ -21,15 +21,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $no=1;
+                        @endphp
+                        @foreach ($barangmasuk as $d)
                         <tr>
-                            <td>1</td>
-                            <td>1 Desember 2023</td>
-                            <td>kulkas</td>
-                            <td>panasi</td>
-                            <td>elektronik</td>
-                            <td>kulkas 200</td>
-                            <td><a class="btn btn-sm btn-success">22</a></td>
+                            <td>{{$no++}}</td>
+                            <td>{{$d->tanggal}}</td>
+                            <td>{{$d->nama_barang}}</td>
+                            <td>{{$d->merek}}</td>
+                            <td>{{$d->kategori}}</td>
+                            <td>{{$d->keterangan}}</td>
+                            <td><a class="btn btn-sm btn-success">{{$d->jumlah}}</a></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

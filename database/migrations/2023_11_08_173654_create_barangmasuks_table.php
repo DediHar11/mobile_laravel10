@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('barang_id');
             $table->string('jumlah');
+            $table->string('tanggal');
             $table->string('keterangan');
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\barang;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -23,7 +24,8 @@ class LaporanController extends Controller
     // laporan stok barang
         public function stok_barang()
         {
-            return view('laporan.stokbarang');
+            $data = barang::all();
+            return view('laporan.stokbarang',compact('data'));
         }
     // end laporan stok barang
 

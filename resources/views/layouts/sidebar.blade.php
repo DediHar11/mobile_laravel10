@@ -44,7 +44,7 @@
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{route('barang_masuk')}}" class="dropdown-item">Laporan Barang Masuk</a>
                     <a href="{{route('barang_keluar')}}" class="dropdown-item">Laporan Barang Keluar</a>
-                    <a href="#" class="dropdown-item">Laporan Stok Barang</a>
+                    <a href="{{route('stok_barang')}}" target="_blank" class="dropdown-item">Laporan Stok Barang</a>
                 </div>
             </div>
 

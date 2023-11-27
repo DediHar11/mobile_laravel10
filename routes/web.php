@@ -5,6 +5,7 @@ use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('beranda');
+    return view('beranda',['a'=> User::where('roles','admin')->count()]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('merek',[MasterController::class,'merek'])->name('merek');
@@ -45,6 +46,7 @@ Route::get('pengguna',[MasterController::class,'pengguna'])->name('pengguna');
 
 Route::get('barangmasuk',[TransaksiController::class,'barangmasuk'])->name('barangmasuk');
 Route::get('createbarangmasuk',[TransaksiController::class,'createbarangmasuk'])->name('tambahbarangmasuk');
+Route::post('storebarangmasuk',[TransaksiController::class,'store'])->name('storebarangmasuk');
 
 Route::get('barangkeluar',[TransaksiController::class,'barangkeluar'])->name('barangkeluar');
 

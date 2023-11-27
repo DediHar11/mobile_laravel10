@@ -26,7 +26,7 @@
                 <i class="fa fa-user-circle text-primary" aria-hidden="true" style="font-size:40px"></i>
                 <div class="ms-3">
                     <p class="mb-2">Total User Admin</p>
-                    <h6 class="mb-0">3</h6>
+                    <h6 class="mb-0">{{$a}}</h6>
                 </div>
             </div>
         </div>
