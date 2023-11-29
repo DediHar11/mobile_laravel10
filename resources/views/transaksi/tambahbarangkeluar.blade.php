@@ -5,8 +5,8 @@
         <div class="row g-4">
             <div class="col-sm-12 col-xl-10">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Tambah Barang Masuk</h6>
-                    <form action="{{route('storebarangmasuk')}}" method="POST" enctype="multipart/form-data">
+                    <h6 class="mb-4">Tambah Barang Keluar</h6>
+                    <form action="{{route('storebarangkeluar')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating mb-3">
                             <input type="date" class="form-control" name="tanggal" id="floatingPassword" required>

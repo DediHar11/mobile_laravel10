@@ -46,12 +46,19 @@ Route::get('pengguna',[MasterController::class,'pengguna'])->name('pengguna');
 
 Route::get('barangmasuk',[TransaksiController::class,'barangmasuk'])->name('barangmasuk');
 Route::get('createbarangmasuk',[TransaksiController::class,'createbarangmasuk'])->name('tambahbarangmasuk');
-Route::post('storebarangmasuk',[TransaksiController::class,'store'])->name('storebarangmasuk');
+Route::post('storebarangmasuk',[TransaksiController::class,'storebarangmasuk'])->name('storebarangmasuk');
 
 Route::get('barangkeluar',[TransaksiController::class,'barangkeluar'])->name('barangkeluar');
 
+// Barang Keluar
+Route::get('barangkeluar',[TransaksiController::class,'barangkeluar'])->name('barangkeluar');
+Route::get('createbarangkeluar',[TransaksiController::class,'createbarangkeluar'])->name('tambahbarangkeluar');
+Route::post('storebarangkeluar',[TransaksiController::class,'storebarangkeluar'])->name('storebarangkeluar');
+
 Route::get('laporanbarangmasuk',[LaporanController::class,'barang_masuk'])->name('barang_masuk');
+Route::get('barang_bm',[LaporanController::class,'barang_bm'])->name('barang_bm');
 Route::get('laporanbarangkeluar',[LaporanController::class,'barang_keluar'])->name('barang_keluar');
+Route::get('barang_bk',[LaporanController::class,'barang_bk'])->name('barang_bk');
 Route::get('laporanstokbarang',[LaporanController::class,'stok_barang'])->name('stok_barang');
 
 Route::middleware('auth')->group(function () {

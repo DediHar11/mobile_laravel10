@@ -2,9 +2,10 @@
 @section('content')
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
+            <h6 class="mb-0" style="text-align:left">Barang Keluar</h6><br>
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">Barang Keluar</h6>
-                <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-print" aria-hidden="true"></i> Cetak</a>
+                <a href="{{route('tambahbarangkeluar')}}" class="btn btn-sm btn-outline-info"><i class="fa fa-plus"></i> Tambah</a>
+                <a href="#" class="btn btn-sm btn-outline-success"><i class="fa fa-print" aria-hidden="true"></i> Cetak</a>
             </div>
             <div class="table-responsive">
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -20,15 +21,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $no=1;
+                        @endphp
+                        @foreach ($barangkeluar as $d)
                         <tr>
-                            <td>1</td>
-                            <td>1 Desember 2023</td>
-                            <td>kulkas</td>
-                            <td>panasi</td>
-                            <td>elektronik</td>
-                            <td>kulkas 200</td>
-                            <td><a class="btn btn-sm btn-danger">22</a></td>
+                            <td>{{$no++}}</td>
+                            <td>{{$d->tanggal}}</td>
+                            <td>{{$d->nama_barang}}</td>
+                            <td>{{$d->merek}}</td>
+                            <td>{{$d->kategori}}</td>
+                            <td>{{$d->keterangan}}</td>
+                            <td><a class="btn btn-sm btn-success">{{$d->jumlah}}</a></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
