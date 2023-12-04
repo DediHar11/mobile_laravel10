@@ -45,6 +45,9 @@
                 <div class="align-items-center justify-content-between mb-4" align="center">
                     <h2>LAPORAN STOK BARANG</h2>
                 </div>
+                <div align="left">
+                    <p><strong>Stok Barang Saat Ini</strong></p>
+                </div>
                 <hr>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">

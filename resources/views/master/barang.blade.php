@@ -33,8 +33,11 @@
                             <td>{{$d->keterangan}}</td>
                             <td>{{$d->stok}}</td>
                             <td>
-                                <a class="btn btn-sm btn-outline-info"><i class="fa fa-pen"></i> Edit</a>
-                                <a class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</a>
+                                <form action="{{route('delete_barang',$d->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>

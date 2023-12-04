@@ -11,6 +11,17 @@ use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
+    public function cetak_bm(){
+        $barangmasuk = barangmasuk::join('barangs', 'barangmasuks.barang_id', '=', 'barangs.id')
+                                        ->join('kategoris', 'barangs.kategori_id', '=', 'kategoris.id')
+                                        ->join('mereks', 'barangs.merek_id', '=', 'mereks.id')
+                                        // ->join('barangmasuks', 'keterangan.barangmasuks_id', '=', 'barangmasuks.id')
+                                        ->get();
+        
+        
+    // dd($barangmasuk);
+        return view('transaksi.cetakbm', compact('barangmasuk'));
+    }
     //barang masuk
     public function barangmasuk()
     {
@@ -19,8 +30,9 @@ class TransaksiController extends Controller
                                         ->join('kategoris', 'barangs.kategori_id', '=', 'kategoris.id')
                                         ->join('mereks', 'barangs.merek_id', '=', 'mereks.id')
                                         ->get();
+        $a = BarangMasuk::pluck('keterangan');
     // dd($barangmasuk);
-        return view('transaksi.barangmasuk', compact('barangmasuk'));
+        return view('transaksi.barangmasuk', compact('barangmasuk', 'a'));
     }
     public function createbarangmasuk()
     {
@@ -72,6 +84,18 @@ class TransaksiController extends Controller
     //end barang masuk
 
     //barang keluar
+
+    public function cetak_bk()
+    {
+        // $barangkeluar = barangkeluar::with('barangkeluar','merek','kategori')->paginate(10);
+        $barangkeluar = barangkeluar::join('barangs', 'barangkeluars.barang_id', '=', 'barangs.id')
+                                        ->join('kategoris', 'barangs.kategori_id', '=', 'kategoris.id')
+                                        ->join('mereks', 'barangs.merek_id', '=', 'mereks.id')
+                                        ->get();
+    // dd($barangkeluar);
+        return view('transaksi.cetakbk', compact('barangkeluar'));
+    }
+
     public function barangkeluar()
     {
         // $barangkeluar = barangkeluar::with('barangkeluar','merek','kategori')->paginate(10);
@@ -80,7 +104,8 @@ class TransaksiController extends Controller
                                         ->join('mereks', 'barangs.merek_id', '=', 'mereks.id')
                                         ->get();
     // dd($barangkeluar);
-        return view('transaksi.barangkeluar', compact('barangkeluar'));
+        $a = BarangKeluar::pluck('keterangan');
+        return view('transaksi.barangkeluar', compact('barangkeluar', 'a'));
     }
     public function createbarangkeluar()
     {

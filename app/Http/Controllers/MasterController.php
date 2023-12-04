@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\merek;
 use App\Models\barang;
 use App\Models\kategori;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MasterController extends Controller
@@ -111,6 +112,7 @@ class MasterController extends Controller
 
         return redirect()->route('barang')->with('success', 'Data berhasil di tambahkan !');
     }
+
     public function delete_barang($id)
     {
         $data = barang::where('id',$id)->delete();
@@ -121,7 +123,8 @@ class MasterController extends Controller
     // start pengguna
     public function pengguna()
     {
-        return view('master.pengguna');
+        $data = User::all();
+        return view('master.pengguna',compact('data'));
     }
     // end pengguna
 }

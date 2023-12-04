@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\barang;
 use App\Models\barangmasuk;
+use App\Models\barangkeluar;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -22,6 +23,8 @@ class LaporanController extends Controller
             ->join('kategoris', 'barangs.kategori_id', '=', 'kategoris.id')
             ->join('mereks', 'barangs.merek_id', '=', 'mereks.id')
             ->whereBetween('tanggal',[$daritanggal,$hinggatanggal])->get();
+
+            $a = barangmasuk::pluck('keterangan');
             
             // $i = 0;
             // foreach ($data as $cektanggal) {
@@ -31,7 +34,7 @@ class LaporanController extends Controller
             //     $i++;
             //     dd($currentday);
             // }
-            return view('laporan.laporanbm',compact('data'));
+            return view('laporan.laporanbm',compact('data', 'daritanggal', 'hinggatanggal', 'a'));
         }
     // end laporan barang masuk
 
@@ -45,11 +48,14 @@ class LaporanController extends Controller
             
             $daritanggal = $request->daritanggal;
             $hinggatanggal = $request->hinggatanggal;
-            $data = barangmasuk::join('barangs', 'barangmasuks.barang_id', '=', 'barangs.id')
+            $data = barangkeluar::join('barangs', 'barangkeluars.barang_id', '=', 'barangs.id')
             ->join('kategoris', 'barangs.kategori_id', '=', 'kategoris.id')
             ->join('mereks', 'barangs.merek_id', '=', 'mereks.id')
             ->whereBetween('tanggal',[$daritanggal,$hinggatanggal])->get();
-            return view('laporan.laporanbk',compact('data'));
+
+            $a = barangkeluar::pluck('keterangan');
+
+            return view('laporan.laporanbk',compact('data', 'daritanggal', 'hinggatanggal', 'a'));
         }
     // end laporan barang keluar
 

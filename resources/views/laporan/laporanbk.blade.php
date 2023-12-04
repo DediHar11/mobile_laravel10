@@ -44,6 +44,9 @@
                 <div class="align-items-center justify-content-between mb-4" align="center">
                     <h2>LAPORAN BARANG KELUAR</h2>
                 </div>
+                <div align="left">
+                    <p>Rentang Tanggal: <strong>{{ $daritanggal }}</strong> hingga <strong>{{ $hinggatanggal }}</strong></p>
+                </div>
                 <hr>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -61,7 +64,7 @@
                         @php
                             $no = 1;
                         @endphp
-                        @foreach ($data as $d)
+                        @foreach ($data as $key => $d)
                         <tbody>
                             <tr style="background-color:snow">
                                 <td>{{$no++}}</td>
@@ -69,7 +72,7 @@
                                 <td>{{$d->nama_barang}}</td>
                                 <td>{{$d->merek}}</td>
                                 <td>{{$d->kategori}}</td>
-                                <td>{{$d->keterangan}}</td>
+                                <td>{{ $a[$key] }}</td>
                                 <td><a class="btn btn-sm btn-success">{{$d->jumlah}}</a></td>
                             </tr>
                         </tbody>

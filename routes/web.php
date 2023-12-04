@@ -1,11 +1,15 @@
 <?php
 
-use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\BerandaController;
+use App\Models\User;
+use App\Models\barang;
+use App\Models\barangmasuk;
+use App\Models\barangkeluar;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
-use Illuminate\Support\Facades\Route;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +21,16 @@ use App\Models\User;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('auth.masuk');
 });
 
+// Route::get('coba',[Coba::class,'index']);
+
 Route::get('/dashboard', function () {
-    return view('beranda',['a'=> User::where('roles','admin')->count()]);
+    $data = barang::with('merek','kategori')->paginate(10);
+    return view('beranda',compact('data'),
+    ['a'=> User::where('roles','admin')->count(),'b'=> barangmasuk::sum('jumlah'),'d'=> barangkeluar::sum('jumlah')]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('merek',[MasterController::class,'merek'])->name('merek');
@@ -45,10 +52,12 @@ Route::delete('delete_barang/{id}',[MasterController::class,'delete_barang'])->n
 Route::get('pengguna',[MasterController::class,'pengguna'])->name('pengguna');
 
 Route::get('barangmasuk',[TransaksiController::class,'barangmasuk'])->name('barangmasuk');
+Route::get('cetak_bm',[TransaksiController::class,'cetak_bm'])->name('cetak_bm');
 Route::get('createbarangmasuk',[TransaksiController::class,'createbarangmasuk'])->name('tambahbarangmasuk');
 Route::post('storebarangmasuk',[TransaksiController::class,'storebarangmasuk'])->name('storebarangmasuk');
 
 Route::get('barangkeluar',[TransaksiController::class,'barangkeluar'])->name('barangkeluar');
+Route::get('cetak_bk',[TransaksiController::class,'cetak_bk'])->name('cetak_bk');
 
 // Barang Keluar
 Route::get('barangkeluar',[TransaksiController::class,'barangkeluar'])->name('barangkeluar');
@@ -66,5 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';
